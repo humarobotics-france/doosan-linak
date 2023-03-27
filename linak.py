@@ -76,7 +76,7 @@ class Linak:
     def heartbeat(self):
         # Run this with a thread
         self.current_hearbeat += 1
-        if self.current_hearbeat == 255:
+        if self.current_hearbeat == 256:
             self.current_hearbeat = 0
         set_modbus_output("heartbeat", self.current_hearbeat)
         time.sleep(0.1)
@@ -96,7 +96,7 @@ class Linak:
         set_modbus_output("position", pos)
         time.sleep(0.5)
         # Wait until the lifting column stop moving:
-        while self.get_current() != 0:
+        while self.get_current() != 0: #TODO: Use Running out and Running in instead of Current
             time.sleep(0.1)
 
     def get_position(self):
